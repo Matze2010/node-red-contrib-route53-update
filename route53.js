@@ -20,6 +20,8 @@ module.exports = function(RED) {
 		 'accessKeyId': accesskey,
 		 'secretAccessKey': accesssecret
 	    }); 
+		
+	    var ip = msg.payload.ip || msg.payload;
 
             var params = {
  	 	ChangeBatch: {
@@ -30,7 +32,7 @@ module.exports = function(RED) {
       					Name: hostname, 
       					ResourceRecords: [
          					{
-        					Value: msg.payload.ip || msg.payload
+        					Value: ip
        						}
       					], 
       					TTL: 10, 
@@ -47,8 +49,11 @@ module.exports = function(RED) {
    		if (err) {
 			done(err);
 		} else {
-			var msg = { 'payload': data};
-			send(msg);
+			var result = { 'payload': data};
+			send(result);
+			
+			node.status({fill:"green",shape:"dot",text: ip});
+			
 			done();
 		}
 	    });
