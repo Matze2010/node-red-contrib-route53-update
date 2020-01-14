@@ -14,6 +14,8 @@ module.exports = function(RED) {
 
         node.on('input', function(msg, send, done) {
 
+	    this.status({});
+		
 	    var client = new AWS.Route53({
 	    	'version': 'latest',
 		 'region': 'us-east-1',
