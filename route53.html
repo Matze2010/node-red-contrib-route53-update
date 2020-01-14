@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('route53',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+	    hostname: {value:"", required:true},
+	    zoneid: {value:"",required:true}
+        },
+	credentials: {
+		accesskey: {type: "text",required:true},
+         	accesssecret: {type: "password",required:true}
+     	},
+        inputs:1,
+        outputs:1,
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||"route53";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="route53">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+     	<label for="node-input-hostname"><i class="icon-tag"></i> Hostname</label>
+     	<input type="text" id="node-input-hostname" placeholder="Hostname">
+    </div>
+    <div class="form-row">
+     	<label for="node-input-zoneid"><i class="icon-tag"></i> ZoneID</label>
+     	<input type="text" id="node-input-zoneid" placeholder="AWS ZoneID">
+    </div>
+    <div class="form-row">
+     	<label for="node-input-accesskey"><i class="icon-tag"></i> AWS AccessKeyID</label>
+     	<input type="text" id="node-input-accesskey">
+     </div>
+     <div class="form-row">
+     	<label for="node-input-accesssecret"><i class="icon-tag"></i> AWS AccessSecret</label>
+     	<input type="password" id="node-input-accesssecret">
+      </div>
+</script>
+
+<script type="text/html" data-help-name="lower-case">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>
