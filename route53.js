@@ -30,7 +30,7 @@ module.exports = function(RED) {
       					Name: hostname, 
       					ResourceRecords: [
          					{
-        					Value: msg.payload.ip
+        					Value: msg.payload.ip || msg.payload
        						}
       					], 
       					TTL: 10, 
